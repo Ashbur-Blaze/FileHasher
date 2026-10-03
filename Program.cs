@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using System.Linq;
 using System.Security.Cryptography;
 
 class Program
@@ -40,7 +41,10 @@ class Program
                 return;
             }
 
-            foreach (string file in files)
+            var filtered = files
+                .Where(f => !f.Contains("\\bin\\") && !f.Contains("\\obj\\"));
+
+            foreach (string file in filtered)
             {
                 HashOneFile(file);
             }
